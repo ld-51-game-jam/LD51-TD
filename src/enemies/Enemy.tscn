@@ -321,7 +321,6 @@ script = ExtResource( 1 )
 position = Vector2( 40, 39 )
 frames = SubResource( 9 )
 animation = "human_walking_south"
-frame = 5
 playing = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
