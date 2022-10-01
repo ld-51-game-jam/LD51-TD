@@ -11,8 +11,13 @@ config_version=4
 [application]
 
 config/name="Ld 51- TD"
-run/main_scene="res://World.tscn"
+run/main_scene="res://src/start_menu/StartScene.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1980
+window/size/height=1080
 
 [gui]
 
