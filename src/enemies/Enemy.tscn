@@ -317,6 +317,7 @@ radius = 17.0
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
+_demo_mode = true
 
 [node name="Timer" parent="." instance=ExtResource( 4 )]
 
@@ -324,7 +325,7 @@ script = ExtResource( 1 )
 position = Vector2( 40, 39 )
 frames = SubResource( 9 )
 animation = "death"
-frame = 16
+frame = 13
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -333,3 +334,4 @@ shape = SubResource( 55 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="child_entered_tree" from="CollisionShape2D" to="." method="bullet_hit"]
