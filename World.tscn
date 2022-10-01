@@ -1,31 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://src/start_menu/StartScene.tscn" type="PackedScene" id=1]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node
-
-export(PackedScene) var start_menu
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var start_menu: Node = start_menu #start_menu.instance()
-	add_child(start_menu)
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
-
 [node name="World" type="Node2D"]
-script = SubResource( 1 )
 
 [node name="StartScene" parent="." instance=ExtResource( 1 )]
