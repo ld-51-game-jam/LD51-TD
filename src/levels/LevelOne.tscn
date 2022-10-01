@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://src/start_menu/StartScene.tscn" type="PackedScene" id=1]
+[gd_scene load_steps=2 format=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
@@ -27,5 +25,3 @@ func _ready():
 
 [node name="World" type="Node2D"]
 script = SubResource( 1 )
-
-[node name="StartScene" parent="." instance=ExtResource( 1 )]
