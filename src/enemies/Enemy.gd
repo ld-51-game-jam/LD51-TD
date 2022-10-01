@@ -3,7 +3,7 @@ extends "res://src/enemies/Base.gd"
 var timer_started: bool = false
 
 # toggle on or off from inspector
-export var _demo_mode = false
+export var _demo_mode: bool = false
 #for demo purposes only.
 var demo_walk_count: int = 0
 
