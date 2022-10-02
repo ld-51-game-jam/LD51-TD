@@ -36,7 +36,7 @@ func move(delta: float) -> void:
 			direction = "north"
 		prev_pos.y = position.y
 		
-	set_offset(get_offset() + _speed * delta )
+	set_offset(get_offset() + speed * delta )
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
