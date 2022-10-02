@@ -9,3 +9,5 @@ var tower_data = {
 		"cost": 2
 		}
 }
+
+var hp: int = 5
