@@ -73,14 +73,15 @@ func update_tower_preview() -> void:
 	var current_tile = map_node.get_node("TowerExclusion").world_to_map(mouse_position)
 	var tile_position = map_node.get_node("TowerExclusion").map_to_world(current_tile)
 	var gold = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Gold")
+	var sufficient_funds = int(gold.text) >= GameData.tower_data[build_type].cost
 	
-	if map_node.get_node("TowerExclusion").get_cellv(current_tile) == -1 and int(gold.text) > 1:
-		get_node("UI").update_tower_preview(tile_position, "ca3aa100")
+	if map_node.get_node("TowerExclusion").get_cellv(current_tile) == -1 and sufficient_funds:
+		get_node("UI").update_tower_preview(tile_position, "ca3aa100", sufficient_funds)
 		build_valid = true
 		build_location = tile_position
 		build_tile = current_tile
 	else:
-		get_node("UI").update_tower_preview(tile_position, "ccf02222")
+		get_node("UI").update_tower_preview(tile_position, "ccf02222", sufficient_funds)
 		build_valid = false
 
 	
@@ -98,9 +99,10 @@ func verify_and_build() -> void:
 		new_tower.type = build_type
 		new_tower.built = true
 		map_node.get_node("Turrets").add_child(new_tower, true)
+		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 4)
 		var gold: Label = get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold")
-		gold.text = String(int(gold.text) - 2)
+		gold.text = String(int(gold.text) - GameData.tower_data[build_type].cost)
 
 
 func start_next_wave() -> void:
