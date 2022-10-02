@@ -14,9 +14,6 @@
 [ext_resource path="res://assets/base/empty.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/fonts/Montreal-Bold.ttf" type="DynamicFontData" id=13]
 
-[sub_resource type="StreamTexture" id=6]
-flags = 4
-
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
 0/texture = ExtResource( 3 )
@@ -200,7 +197,6 @@ default_font = SubResource( 4 )
 
 [sub_resource type="StreamTexture" id=7]
 flags = 4
-load_path = "res://.import/castle_wall_test.png-41bdc2385c95c19b1440b80662f14039.stex"
 
 [node name="World" type="Node2D"]
 script = ExtResource( 10 )
@@ -317,6 +313,29 @@ margin_bottom = 59.0
 text = "0"
 align = 1
 valign = 1
+
+[node name="CreepLabel" type="Label" parent="UI/HUD/InfoBar"]
+anchor_left = -0.006
+anchor_right = -0.006
+margin_left = 383.962
+margin_top = 24.0
+margin_right = 423.962
+margin_bottom = 38.0
+text = "Creeps:     /"
+
+[node name="Creeps" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 432.0
+margin_top = 24.0
+margin_right = 440.0
+margin_bottom = 38.0
+text = "0"
+
+[node name="MaxCreeps" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 456.0
+margin_top = 24.0
+margin_right = 472.0
+margin_bottom = 38.0
+text = "0"
 
 [node name="PanningCamera" type="Camera2D" parent="."]
 position = Vector2( 608, 328 )
