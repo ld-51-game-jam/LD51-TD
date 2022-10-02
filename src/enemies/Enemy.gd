@@ -4,6 +4,7 @@ signal add_money
 
 const human_health: int = 3
 const zombie_health: int = 5
+
 var prev_pos: Vector2
 var timer_started: bool = false
 var health: int = human_health
@@ -97,7 +98,6 @@ func handle_human_hit(damage: int) -> void:
 	if health <= 0:
 		_speed = 0
 		$KinematicBody2D/AnimatedSprite.animation = "death"
-		print('adding money', get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold").text)
 		emit_signal("add_money")
 
 
