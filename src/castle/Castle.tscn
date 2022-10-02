@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/castle/Castle.gd" type="Script" id=1]
 [ext_resource path="res://assets/walls/castle_wall3.png" type="Texture" id=2]
@@ -6,10 +6,11 @@
 [ext_resource path="res://assets/walls/castle_wall2.png" type="Texture" id=4]
 [ext_resource path="res://assets/walls/castle_wall4.png" type="Texture" id=5]
 [ext_resource path="res://assets/walls/castle_wall5.png" type="Texture" id=6]
+[ext_resource path="res://assets/walls/castle_wall6.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
