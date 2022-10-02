@@ -315,23 +315,27 @@ animations = [ {
 [sub_resource type="CapsuleShape2D" id=55]
 radius = 17.0
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Enemy" type="PathFollow2D"]
+rotate = false
 script = ExtResource( 1 )
-_demo_mode = true
 
-[node name="Timer" parent="." instance=ExtResource( 4 )]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 40, 39 )
+[node name="Timer" parent="KinematicBody2D" instance=ExtResource( 4 )]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+position = Vector2( 0, -1 )
 frames = SubResource( 9 )
-animation = "death"
-frame = 13
+animation = "dead"
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 40, 46 )
+[node name="Position2D" type="Position2D" parent="KinematicBody2D/AnimatedSprite"]
+position = Vector2( 0, -24 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0, -2 )
 shape = SubResource( 55 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="child_entered_tree" from="CollisionShape2D" to="." method="bullet_hit"]
+[connection signal="timeout" from="KinematicBody2D/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="KinematicBody2D/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="child_entered_tree" from="KinematicBody2D/CollisionShape2D" to="." method="bullet_hit"]
