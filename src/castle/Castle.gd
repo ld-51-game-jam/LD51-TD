@@ -9,4 +9,5 @@ func _on_Castle_body_entered(enemy: KinematicBody2D) -> void:
 	root.update_label(GameData.hp, "Health")
 	enemy.get_parent().queue_free()
 	if GameData.hp <= 0:
+		yield(get_tree().create_timer(2.0),"timeout")
 		get_tree().change_scene("res://src/game_over/GameOver.tscn")

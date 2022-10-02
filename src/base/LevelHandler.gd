@@ -24,7 +24,7 @@ func _ready() -> void:
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
 	if map_node != self:
-		yield(get_tree().create_timer(5.0),"timeout")
+		yield(get_tree().create_timer(2.0),"timeout")
 	start_next_wave()
 
 
