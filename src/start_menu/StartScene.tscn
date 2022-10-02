@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/base/terrainTiles_Custom.png" type="Texture" id=12]
 [ext_resource path="res://assets/props/Tree1.png" type="Texture" id=13]
 [ext_resource path="res://assets/props/Hill1_with_graves.png" type="Texture" id=14]
-[ext_resource path="res://assets/ui/start_screen/Titlecard.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/start_screen/Titlecard_test.png" type="Texture" id=15]
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
