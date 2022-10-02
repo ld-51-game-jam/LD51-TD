@@ -1,9 +1,9 @@
 extends Node2D
 class_name Tower
 
-func _physics_process(delta):
+func _physics_process(_delta: float) -> void:
 	turn()
 	
-func turn():
+func turn() -> void:
 	var enemy_position = get_global_mouse_position()
 	get_node("Turret").look_at(enemy_position)

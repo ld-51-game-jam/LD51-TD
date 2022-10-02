@@ -1,37 +1,33 @@
 extends PathFollow2D
 
-var posx
-var posy
 
+var prev_pos: Vector2
 var timer_started: bool = false
 var human_health: int = 2
 var zombie_health: int = 4
 var e_state: String = "HUMAN"
-
 var _speed: float = 150
 
-# toggle on or off from inspector
-export var _demo_mode: bool = false
-#for demo purposes only.
-var demo_walk_count: int = 0
+
 func _physics_process(delta: float) -> void:
 	move(delta)
 
+
 func move(delta: float) -> void:
-	if posx != position.x:
-		var diffx = position.x - posx
+	if prev_pos.x != position.x:
+		var diffx = position.x - prev_pos.x
 		if diffx < -1:
 			$KinematicBody2D/AnimatedSprite.animation = "human_walking_west"
 		if diffx > 1:
 			$KinematicBody2D/AnimatedSprite.animation = "human_walking_east"
-		posx = position.x
-	if posy != position.y:
-		var diffy = position.y - posy
+		prev_pos.x = position.x
+	if prev_pos.y != position.y:
+		var diffy = position.y - prev_pos.y
 		if diffy < -1:
 			$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
 		if diffy > 1:
 			$KinematicBody2D/AnimatedSprite.animation = "human_walking_north"
-		posy = position.y
+		prev_pos.y = position.y
 		
 	set_offset(get_offset() + _speed * delta )
 
@@ -39,8 +35,8 @@ func move(delta: float) -> void:
 func _ready() -> void:
 	$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
 	$KinematicBody2D/AnimatedSprite.playing = true
-	posx = position.x
-	posy = position.y
+	prev_pos.x = position.x
+	prev_pos.y = position.y
 	
 # handle timer hitting 10 seconds
 func _on_Timer_timeout() -> void:
@@ -53,15 +49,8 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	match $KinematicBody2D/AnimatedSprite.animation:
 		"death":
 			$KinematicBody2D/AnimatedSprite.animation = "dead"
-		"human_walking_south":
-			if _demo_mode:
-				demo_walk_count = demo_walk_count + 1
-				if demo_walk_count > 3:
-					$KinematicBody2D/AnimatedSprite.animation = "death"
-					demo_walk_count = 0
 		"revive":
-			if _demo_mode:
-				$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
+			$KinematicBody2D/AnimatedSprite.animation = "zombie_walking_north"
 
 # detect a bullet hitting enemy player
 # bullet_hit(node: Bullet) -> void:
