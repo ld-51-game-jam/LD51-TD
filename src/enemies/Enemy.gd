@@ -85,9 +85,10 @@ func handle_zombie_hit(damage: int) -> void:
 	if health <= 0:
 		_speed = 0
 		$KinematicBody2D/AnimatedSprite.animation = "dead"
-		print('adding money')
 		emit_signal("add_money")
 		yield(get_tree().create_timer(3), "timeout")
+		var nod = get_tree().get_root().get_node("World")
+		nod.enemies_in_wave = nod.enemies_in_wave - 1
 		self.queue_free()
 
 
