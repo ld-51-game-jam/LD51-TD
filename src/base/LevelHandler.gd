@@ -27,16 +27,26 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
-		
-	if enemies_in_wave == 0 and start:
+	
+	var max_waves: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/MaxWave")
+	var cont: bool = false
+	if max_waves != null:
+		if current_wave < int(max_waves.text):
+			cont = true
+		else:
+			# load new level
+			return
+			
+	if enemies_in_wave == 0 and start and cont:
 		start_next_wave()
 		start = false
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().get_root().get_node_or_null("StartScene") != null:
 		return
-	var gold = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Gold")
+	var gold: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Gold")
 	var gold_int: int = 0
 	if gold != null:
 		gold_int = int(gold.text)
