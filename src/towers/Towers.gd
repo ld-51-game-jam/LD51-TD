@@ -1,4 +1,5 @@
 extends Node2D
+class_name Tower
 
 func _physics_process(delta):
 	turn()
