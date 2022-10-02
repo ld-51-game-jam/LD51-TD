@@ -2,7 +2,8 @@ extends LevelHandler
 
 
 func _ready() -> void:
-	wave_data = [["Enemy", 0.9], ["Enemy", 0.4], ["Enemy", 0.6], ["Enemy", 0.1]]
-	var max_wave_label: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/MaxWave")
-	if max_wave_label != null:
-		max_wave_label.text = "3"
+	max_waves = 3
+	wave_data = ["Enemy", 4]
+	counters_visible = true
+	change_labels()
+
