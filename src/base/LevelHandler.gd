@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name EnemySpawner
+class_name LevelHandler
 
 var map_node: Node
 var build_mode: bool = false
