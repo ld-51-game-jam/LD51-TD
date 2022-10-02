@@ -7,6 +7,8 @@ var build_valid = false
 var build_tile
 var build_location
 var build_type
+var current_wave = 0
+var enemies_in_wave = 0
 
 # Declare member variables here. Examples:
 # var a: int = 2
@@ -18,6 +20,11 @@ func _ready() -> void:
 	map_node = get_node("GameMap")
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
+	start_next_wave()
+		
+func _process(delta: float) -> void:
+	if build_mode:
+		update_tower_preview()
 
 
 func _unhandled_input(event) -> void:
@@ -36,9 +43,6 @@ func initiate_build_mode(tower_type: String) -> void:
 	get_node("UI").set_tower_preview(build_type, get_global_mouse_position())
 
 
-func _process(delta: float) -> void:
-	if build_mode:
-		update_tower_preview()
 
 	
 func update_tower_preview() -> void:
@@ -59,7 +63,7 @@ func update_tower_preview() -> void:
 func cancel_build_mode() -> void:
 	build_mode = false
 	build_valid = false
-	get_node("UI/TowerPreview").free()
+	get_node("UI/TowerPreview").queue_free()
 
 	
 func verify_and_build() -> void:
@@ -72,3 +76,19 @@ func verify_and_build() -> void:
 		# deduct gold
 		# update gold
 
+func start_next_wave() -> void:
+	var wave_data = retrieve_wave_data()
+	yield(get_tree().create_timer(0.2),"timeout")
+	spawn_enemies(wave_data)
+	
+func retrieve_wave_data():
+	var wave_data = [["Enemy", 0.7], ["Enemy", 0.1]]
+	current_wave += 1
+	enemies_in_wave = wave_data.size()
+	return wave_data
+	
+func spawn_enemies(wave_data):
+	for i in wave_data:
+		var new_enemy = load("res://src/enemies/" + i[0] + ".tscn").instance()
+		map_node.get_node("Path").add_child(new_enemy, true)
+		yield(get_tree().create_timer(i[1]),"timeout")
