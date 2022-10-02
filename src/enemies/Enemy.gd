@@ -13,7 +13,6 @@ onready var health_bar = get_node("HealthBar")
 func _physics_process(delta: float) -> void:
 	move(delta)
 
-
 func move(delta: float) -> void:
 	if health <= 0:
 		return
@@ -36,7 +35,7 @@ func move(delta: float) -> void:
 			direction = "north"
 		prev_pos.y = position.y
 		
-	set_offset(get_offset() + speed * delta )
+	set_offset(get_offset() + _speed * delta )
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

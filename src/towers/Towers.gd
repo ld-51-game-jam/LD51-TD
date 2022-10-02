@@ -41,7 +41,6 @@ func fire():
 func _on_Range_body_entered(body: Node) -> void:
 	enemy_array.append(body.get_parent())
 	
-
-
+	
 func _on_Range_body_exited(body: Node) -> void:
 	enemy_array.erase(body.get_parent())
