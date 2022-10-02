@@ -10,6 +10,7 @@ var build_location: Vector2
 var build_type: String
 var current_wave: int = 0
 var enemies_in_wave: int = 0
+var wave_data: Array
 
 
 # Called when the node enters the scene tree for the first time.
@@ -75,17 +76,13 @@ func verify_and_build() -> void:
 		# update gold
 
 func start_next_wave() -> void:
-	var wave_data = retrieve_wave_data()
-	yield(get_tree().create_timer(0.2),"timeout")
-	spawn_enemies(wave_data)
-	
-func retrieve_wave_data():
-	var wave_data = [["Enemy", 0.7], ["Enemy", 0.1]]
 	current_wave += 1
 	enemies_in_wave = wave_data.size()
-	return wave_data
+	yield(get_tree().create_timer(0.2),"timeout")
+	spawn_enemies()
+
 	
-func spawn_enemies(wave_data: Array) -> void:
+func spawn_enemies() -> void:
 	for i in wave_data:
 		var new_enemy = load("res://src/enemies/" + i[0] + ".tscn").instance()
 		print(map_node)
