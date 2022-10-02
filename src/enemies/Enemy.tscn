@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=63 format=2]
+=======
+[gd_scene load_steps=122 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://src/enemies/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://assets/enemies/walking_east.png" type="Texture" id=2]
@@ -8,6 +12,16 @@
 [ext_resource path="res://assets/enemies/zombie_revive.png" type="Texture" id=6]
 [ext_resource path="res://assets/enemies/human_walking_north.png" type="Texture" id=7]
 [ext_resource path="res://assets/enemies/human_walking_west.png" type="Texture" id=8]
+<<<<<<< Updated upstream
+=======
+[ext_resource path="res://assets/enemies/zombie_walking_east.png" type="Texture" id=9]
+[ext_resource path="res://assets/enemies/zombie_walking_west.png" type="Texture" id=10]
+[ext_resource path="res://assets/enemies/zombie_walking_north.png" type="Texture" id=11]
+[ext_resource path="res://assets/enemies/zombie_walking_south.png" type="Texture" id=12]
+[ext_resource path="res://assets/enemies/hpbar.png" type="Texture" id=13]
+[ext_resource path="res://assets/enemies/PC Computer - CrossCode - Hit Numbers Unused.png" type="Texture" id=14]
+[ext_resource path="res://assets/base/light.png" type="Texture" id=15]
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
@@ -315,12 +329,56 @@ animations = [ {
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
+<<<<<<< Updated upstream
 [node name="Timer" parent="." instance=ExtResource( 4 )]
+=======
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="Light2D" type="Light2D" parent="KinematicBody2D"]
+self_modulate = Color( 0.976471, 0.556863, 0.556863, 1 )
+texture = ExtResource( 15 )
+texture_scale = 0.1
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color( 0.566406, 0.332708, 0.278778, 1 )
+
+[node name="Timer" parent="KinematicBody2D" instance=ExtResource( 4 )]
+>>>>>>> Stashed changes
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 40, 39 )
 frames = SubResource( 9 )
+<<<<<<< Updated upstream
 animation = "human_walking_south"
+=======
+animation = "zombie_walking_west"
+frame = 2
+playing = true
+
+[node name="Position2D" type="Position2D" parent="KinematicBody2D/AnimatedSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 55 )
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_left = -30.0
+margin_top = -30.0
+margin_right = 34.0
+margin_bottom = -24.0
+value = 50.0
+texture_under = ExtResource( 13 )
+texture_progress = ExtResource( 13 )
+tint_under = Color( 0.403922, 0.0431373, 0.0431373, 1 )
+tint_progress = Color( 0.564706, 0.764706, 0.0470588, 1 )
+nine_patch_stretch = true
+
+[node name="AnimatedTimer" type="AnimatedSprite" parent="."]
+position = Vector2( 24, -16 )
+scale = Vector2( 0.749999, 1 )
+frames = SubResource( 106 )
+animation = "count_down"
+frame = 7
+>>>>>>> Stashed changes
 playing = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

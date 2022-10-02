@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=13 format=2]
+=======
+[gd_scene load_steps=15 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://src/start_menu/StartScene.gd" type="Script" id=1]
 [ext_resource path="res://assets/props/treeGreen_large.png" type="Texture" id=2]
@@ -8,6 +12,7 @@
 [ext_resource path="res://assets/base/terrainTiles_default.png" type="Texture" id=6]
 [ext_resource path="res://assets/props/crateWood.png" type="Texture" id=7]
 [ext_resource path="res://assets/props/crateMetal.png" type="Texture" id=8]
+[ext_resource path="res://assets/base/1920_1080_level_shadow.png" type="Texture" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -173,6 +178,13 @@ __meta__ = {
 tile_set = SubResource( 2 )
 format = 1
 tile_data = PoolIntArray( 14, 3, 0, 16, 5, 0, 65537, 2, 0, 65538, 2, 0, 65545, 2, 0, 65547, 1, 65538, 65548, 1, 1, 65549, 1, 1, 65550, 1, 1, 65551, 1, 1, 65552, 1, 1, 65553, 1, 1, 65554, 1, 1, 65555, 1, 1, 65556, 1, 1, 65557, 1, 1, 65558, 1, 0, 131083, 1, 0, 196614, 3, 0, 196619, 1, 0, 196626, 2, 0, 262144, 3, 0, 262153, 3, 0, 262155, 1, 0, 262156, 5, 0, 327691, 1, 0, 327694, 3, 0, 393216, 4, 0, 393217, 4, 0, 393218, 4, 0, 393219, 4, 0, 393222, 2, 0, 393227, 1, 0, 458755, 4, 0, 458763, 1, 0, 524291, 4, 0, 524298, 1, 65538, 524299, 1, 65541, 524304, 2, 0, 589827, 4, 0, 589829, 1, 65538, 589830, 1, 1, 589831, 1, 1, 589832, 1, 1, 589833, 1, 1, 589834, 1, 65541, 655363, 4, 0, 655365, 1, 0, 655368, 5, 0, 655370, 2, 0, 655378, 3, 0, 655379, 3, 0, 720899, 1, 65538, 720900, 1, 1, 720901, 1, 65541, 720902, 3, 0, 786435, 1, 0, 851971, 1, 0 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 645, 368.5 )
+scale = Vector2( 0.752778, 0.752778 )
+texture = ExtResource( 9 )
+energy = 0.7
+mode = 1
 
 [node name="Menu" type="Control" parent="."]
 margin_left = -546.0
