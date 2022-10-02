@@ -549,23 +549,23 @@ margin_left = 270.0
 margin_top = 1.0
 margin_right = 324.0
 margin_bottom = 59.0
-text = "Wave:     / "
+text = "Wave:      / "
 align = 1
 valign = 1
 
 [node name="Wave" type="Label" parent="UI/HUD/InfoBar"]
-margin_left = 299.0
+margin_left = 301.0
 margin_top = 1.0
-margin_right = 339.0
+margin_right = 341.0
 margin_bottom = 59.0
 text = "0"
 align = 1
 valign = 1
 
 [node name="MaxWave" type="Label" parent="UI/HUD/InfoBar"]
-margin_left = 324.0
+margin_left = 329.0
 margin_top = 1.0
-margin_right = 364.0
+margin_right = 369.0
 margin_bottom = 59.0
 text = "0"
 align = 1
@@ -578,19 +578,19 @@ margin_left = 383.962
 margin_top = 24.0
 margin_right = 423.962
 margin_bottom = 38.0
-text = "Creeps:     /"
+text = "Creeps:      /"
 
 [node name="Creeps" type="Label" parent="UI/HUD/InfoBar"]
-margin_left = 432.0
+margin_left = 428.0
 margin_top = 24.0
-margin_right = 440.0
+margin_right = 436.0
 margin_bottom = 38.0
 text = "0"
 
 [node name="MaxCreeps" type="Label" parent="UI/HUD/InfoBar"]
-margin_left = 456.0
+margin_left = 458.0
 margin_top = 24.0
-margin_right = 472.0
+margin_right = 474.0
 margin_bottom = 38.0
 text = "0"
 
