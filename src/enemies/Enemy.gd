@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 
 
 func move(delta: float) -> void:
-	if health < 0:
+	if health <= 0:
 		return
 	if prev_pos.x != position.x:
 		var diffx = position.x - prev_pos.x

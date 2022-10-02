@@ -553,6 +553,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -1 )
 frames = SubResource( 9 )
 animation = "zombie_walking_west"
+frame = 5
 playing = true
 
 [node name="Position2D" type="Position2D" parent="KinematicBody2D/AnimatedSprite"]
