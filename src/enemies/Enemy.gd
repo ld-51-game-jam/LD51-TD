@@ -1,6 +1,7 @@
 extends PathFollow2D
 
-
+var posx
+var posy
 
 var timer_started: bool = false
 var human_health: int = 2
@@ -17,12 +18,29 @@ func _physics_process(delta: float) -> void:
 	move(delta)
 
 func move(delta: float) -> void:
+	if posx != position.x:
+		var diffx = position.x - posx
+		if diffx < -1:
+			$KinematicBody2D/AnimatedSprite.animation = "human_walking_west"
+		if diffx > 1:
+			$KinematicBody2D/AnimatedSprite.animation = "human_walking_east"
+		posx = position.x
+	if posy != position.y:
+		var diffy = position.y - posy
+		if diffy < -1:
+			$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
+		if diffy > 1:
+			$KinematicBody2D/AnimatedSprite.animation = "human_walking_north"
+		posy = position.y
+		
 	set_offset(get_offset() + _speed * delta )
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
 	$KinematicBody2D/AnimatedSprite.playing = true
+	posx = position.x
+	posy = position.y
 	
 # handle timer hitting 10 seconds
 func _on_Timer_timeout() -> void:
