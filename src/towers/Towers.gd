@@ -32,8 +32,9 @@ func select_enemy():
 	
 func fire():
 	ready = false
-	enemy.on_hit(GameData.tower_data[type]["damage"])
-	yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
+	if enemy.health > 0:
+		enemy.on_hit(GameData.tower_data[type]["damage"])
+		yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
 	ready = true
 	
 	
