@@ -2,15 +2,14 @@ extends Node2D
 
 class_name EnemySpawner
 
-var map_node
-
-var build_mode = false
-var build_valid = false
-var build_tile
-var build_location
-var build_type
-var current_wave = 0
-var enemies_in_wave = 0
+var map_node: Node
+var build_mode: bool = false
+var build_valid: bool = false
+var build_tile: Vector2
+var build_location: Vector2
+var build_type: String
+var current_wave: int = 0
+var enemies_in_wave: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -86,7 +85,7 @@ func retrieve_wave_data():
 	enemies_in_wave = wave_data.size()
 	return wave_data
 	
-func spawn_enemies(wave_data):
+func spawn_enemies(wave_data: Array) -> void:
 	for i in wave_data:
 		var new_enemy = load("res://src/enemies/" + i[0] + ".tscn").instance()
 		print(map_node)
