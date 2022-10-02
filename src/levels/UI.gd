@@ -1,10 +1,6 @@
 extends CanvasLayer
 
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
 func set_tower_preview(tower_type: String, mouse_position: Vector2):
 	var drag_tower = load("res://src/towers/" + tower_type + ".tscn").instance()
 	drag_tower.set_name("DragTower")

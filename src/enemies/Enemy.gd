@@ -28,15 +28,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	match $AnimatedSprite.animation:
 		"death":
 			$AnimatedSprite.animation = "dead"
-		"human_walking_south":
-			if _demo_mode:
-				demo_walk_count = demo_walk_count + 1
-				if demo_walk_count > 3:
-					$AnimatedSprite.animation = "death"
-					demo_walk_count = 0
-		"revive":
-			if _demo_mode:
-				$AnimatedSprite.animation = "human_walking_south"
+
 
 # detect a bullet hitting enemy player
 # bullet_hit(node: Bullet) -> void:
