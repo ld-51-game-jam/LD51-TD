@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/props/treeBrown_large.png" type="Texture" id=2]
 [ext_resource path="res://assets/base/terrainTiles_default.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/themes/montreal.tres" type="Theme" id=4]
-[ext_resource path="res://assets/base/terrainTiles_Custom.png" type="Texture" id=5]
 [ext_resource path="res://src/camera/panningcamera.gd" type="Script" id=6]
 [ext_resource path="res://assets/ui/coin.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/button.png" type="Texture" id=8]
@@ -16,7 +15,6 @@
 
 [sub_resource type="StreamTexture" id=6]
 flags = 4
-load_path = "res://.import/x.png-2dcefbbfc3e46b10fc35c8c2c8c64dba.stex"
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -156,7 +154,6 @@ load_path = "res://.import/x.png-2dcefbbfc3e46b10fc35c8c2c8c64dba.stex"
 4/shapes = [  ]
 4/z_index = 0
 5/name = "terrainTiles_Custom.png 5"
-5/texture = ExtResource( 5 )
 5/texture = SubResource( 6 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
@@ -219,7 +216,6 @@ curve = SubResource( 3 )
 [node name="Light2D" type="Light2D" parent="GameMap"]
 position = Vector2( 645, 368.5 )
 scale = Vector2( 0.752778, 0.752778 )
-texture = ExtResource( 6 )
 energy = 0.7
 mode = 1
 
@@ -282,7 +278,35 @@ theme = SubResource( 5 )
 text = "5"
 valign = 1
 
+[node name="WaveLabel" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 270.0
+margin_top = 1.0
+margin_right = 324.0
+margin_bottom = 59.0
+text = "Wave:     / "
+align = 1
+valign = 1
+
+[node name="Wave" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 299.0
+margin_top = 1.0
+margin_right = 339.0
+margin_bottom = 59.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="MaxWave" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 324.0
+margin_top = 1.0
+margin_right = 364.0
+margin_bottom = 59.0
+text = "0"
+align = 1
+valign = 1
+
 [node name="PanningCamera" type="Camera2D" parent="."]
 position = Vector2( 608, 328 )
+offset = Vector2( 32, 32 )
 current = true
 script = ExtResource( 6 )

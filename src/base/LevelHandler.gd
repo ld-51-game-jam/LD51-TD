@@ -11,6 +11,7 @@ var build_type: String
 var current_wave: int = 0
 var enemies_in_wave: int = 0
 var wave_data: Array
+var start: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
+		
+	if enemies_in_wave == 0 and start:
+		start_next_wave()
+		start = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -90,13 +95,17 @@ func verify_and_build() -> void:
 
 func start_next_wave() -> void:
 	current_wave += 1
-	enemies_in_wave = wave_data.size()
 	yield(get_tree().create_timer(0.2),"timeout")
 	spawn_enemies()
+	var wave: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Wave")
+	if wave != null:
+		wave.text = String(current_wave)
 
 	
 func spawn_enemies() -> void:
 	for i in wave_data:
 		var new_enemy = load("res://src/enemies/" + i[0] + ".tscn").instance()
 		map_node.get_node("Path").add_child(new_enemy, true)
+		enemies_in_wave = enemies_in_wave + 1
 		yield(get_tree().create_timer(i[1]),"timeout")
+	start = true
