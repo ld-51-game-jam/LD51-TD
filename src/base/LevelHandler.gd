@@ -12,7 +12,9 @@ var current_wave: int = 0
 var enemies_in_wave: int = 0
 var wave_data: Array
 var start: bool = false
-
+var max_waves: int = 0
+var counters_visible: bool = false
+var spawn_fluctuator = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +23,7 @@ func _ready() -> void:
 		map_node = self
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
+	yield(get_tree().create_timer(5.0),"timeout")
 	start_next_wave()
 
 
@@ -108,16 +111,28 @@ func verify_and_build() -> void:
 func start_next_wave() -> void:
 	current_wave += 1
 	yield(get_tree().create_timer(0.2),"timeout")
+	update_label(wave_data[1], "MaxCreeps")
+	update_label(0, "Creeps")
 	spawn_enemies()
-	var wave: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Wave")
-	if wave != null:
-		wave.text = String(current_wave)
+	update_label(current_wave, "Wave")
+	wave_data[1] += current_wave * 2
 
 	
 func spawn_enemies() -> void:
-	for i in wave_data:
-		var new_enemy = load("res://src/enemies/" + i[0] + ".tscn").instance()
+	for i in range(wave_data[1]):
+		var new_enemy = load("res://src/enemies/" + wave_data[0] + ".tscn").instance()
 		map_node.get_node("Path").add_child(new_enemy, true)
 		enemies_in_wave = enemies_in_wave + 1
-		yield(get_tree().create_timer(i[1]),"timeout")
+		var fluctuation = spawn_fluctuator.randf_range(0.1, 1.0)
+		yield(get_tree().create_timer(fluctuation),"timeout")
+		update_label(i+1, "Creeps")
 	start = true
+	
+func change_labels() -> void:
+	update_label(max_waves, "MaxWave")
+	update_label(wave_data[1], "MaxCreeps")
+		
+func update_label(num: int, label_str: String) -> void:
+	var label: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/" + label_str)
+	if label != null:
+		label.text = String(num)
