@@ -43,6 +43,10 @@ func fire() -> void:
 	ready = false
 	if is_instance_valid(enemy):
 		if enemy.health > 0:
+			var new_bullet = load("res://src/towers/" + GameData.tower_data[type].ammo + ".tscn").instance()
+			new_bullet.enemy = enemy
+			new_bullet.tower_type = type
+			self.add_child(new_bullet, true)
 			enemy.on_hit(GameData.tower_data[type]["damage"])
 			yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
 	else:
