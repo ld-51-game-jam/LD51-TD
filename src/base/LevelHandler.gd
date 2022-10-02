@@ -52,14 +52,11 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().get_root().get_node_or_null("StartScene") != null:
 		return
-	var gold: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Gold")
-	var gold_int: int = 0
-	if gold != null:
-		gold_int = int(gold.text)
-		
+
+
 	if event.is_action_released("ui_cancel") and build_mode == true:
 		cancel_build_mode()
-	if event.is_action_released("ui_accept") and build_mode == true and gold_int > 0:
+	if event.is_action_released("ui_accept") and build_mode == true and GameData.gold > 0:
 		verify_and_build()
 		cancel_build_mode()
 
@@ -78,8 +75,8 @@ func update_tower_preview() -> void:
 	var mouse_position = get_global_mouse_position()
 	var current_tile = map_node.get_node("TowerExclusion").world_to_map(mouse_position)
 	var tile_position = map_node.get_node("TowerExclusion").map_to_world(current_tile)
-	var gold = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Gold")
-	var sufficient_funds = int(gold.text) >= GameData.tower_data[build_type].cost
+
+	var sufficient_funds = GameData.gold >= GameData.tower_data[build_type].cost
 	
 	if map_node.get_node("TowerExclusion").get_cellv(current_tile) == -1 and sufficient_funds:
 		get_node("UI").update_tower_preview(tile_position, "ca3aa100", sufficient_funds)
@@ -107,8 +104,9 @@ func verify_and_build() -> void:
 		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 4)
-		var gold: Label = get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold")
-		gold.text = String(int(gold.text) - GameData.tower_data[build_type].cost)
+		GameData.gold -= GameData.tower_data[build_type].cost
+		update_label(GameData.gold, "Gold")
+
 
 
 func start_next_wave() -> void:

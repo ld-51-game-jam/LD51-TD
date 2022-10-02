@@ -17,6 +17,8 @@ func _ready():
 
 
 func _on_StartButton_pressed():
+	GameData.hp = 5
+	GameData.gold = 5
 	get_tree().change_scene("res://src/levels/LevelOne.tscn")
 
 
