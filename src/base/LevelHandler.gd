@@ -23,7 +23,8 @@ func _ready() -> void:
 		map_node = self
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
-	yield(get_tree().create_timer(5.0),"timeout")
+	if map_node != self:
+		yield(get_tree().create_timer(5.0),"timeout")
 	start_next_wave()
 
 
@@ -133,6 +134,7 @@ func spawn_enemies() -> void:
 func change_labels() -> void:
 	update_label(max_waves, "MaxWave")
 	update_label(wave_data[1], "MaxCreeps")
+	update_label(GameData.hp, "Health")
 		
 func update_label(num: int, label_str: String) -> void:
 	var label: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/" + label_str)

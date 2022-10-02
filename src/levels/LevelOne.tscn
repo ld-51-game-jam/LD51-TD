@@ -597,6 +597,29 @@ margin_right = 472.0
 margin_bottom = 38.0
 text = "0"
 
+[node name="HealthLabel" type="Label" parent="UI/HUD/InfoBar"]
+anchor_left = -0.012
+anchor_right = -0.012
+margin_left = 55.924
+margin_top = 24.0
+margin_right = 111.924
+margin_bottom = 38.0
+text = "HP:    /"
+
+[node name="MaxHealth" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 88.0
+margin_top = 24.0
+margin_right = 104.0
+margin_bottom = 38.0
+text = "5"
+
+[node name="Health" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 64.0
+margin_top = 24.0
+margin_right = 80.0
+margin_bottom = 38.0
+text = "5"
+
 [node name="PanningCamera" type="Camera2D" parent="."]
 position = Vector2( 608, 328 )
 offset = Vector2( 32, 32 )
