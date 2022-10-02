@@ -38,6 +38,8 @@ func _process(_delta: float) -> void:
 			cont = true
 		else:
 			# load new level
+			# do we have some sort of transition scene? or leave as is for jam?
+			# get_tree().change_scene("res://src/levels/LevelTwo.tscn")
 			return
 			
 	if enemies_in_wave == 0 and start and cont:

@@ -2,8 +2,8 @@ extends PathFollow2D
 
 signal add_money
 
-const human_health: int = 3
-const zombie_health: int = 5
+const human_health: int = 2
+const zombie_health: int = 4
 
 var prev_pos: Vector2
 var timer_started: bool = false
@@ -37,7 +37,7 @@ func move(delta: float) -> void:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_south"
 			direction = "south"
 		prev_pos.y = position.y
-		
+	
 	set_offset(get_offset() + _speed * delta )
 
 # Called when the node enters the scene tree for the first time.
