@@ -310,6 +310,11 @@ points = PoolVector2Array( 0.290344, 8.68718, 16.9577, 10.0438, 32.8499, 15.858,
 8/shapes = [  ]
 8/z_index = 0
 
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1336, 96, 0, 0, 0, 0, 768, 96, 0, 0, 0, 0, 736, 128, 0, 0, 0, 0, 736, 512, 0, 0, 0, 0, 712, 544, 0, 0, 0, 0, 672, 576, 0, 0, 0, 0, 640, 608, 0, 0, 0, 0, 384, 608, 0, 0, 0, 0, 352, 640, 0, 0, 0, 0, 352, 704, 0, 0, 0, 0, 320, 736, 0, 0, 0, 0, 256, 736, 0, 0, 0, 0, 224, 768, 0, 0, 0, 0, 224, 808 )
+}
+
 [node name="StartScene" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -370,6 +375,9 @@ margin_top = 66.0
 margin_right = 63.0
 margin_bottom = 86.0
 text = "Quit"
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource( 5 )
 
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/OptionsButton" to="Menu" method="_on_OptionsButton_pressed"]

@@ -6,7 +6,7 @@ var timer_started: bool = false
 var human_health: int = 2
 var zombie_health: int = 4
 var e_state: String = "HUMAN"
-var _speed: float = 150
+var speed: float = 150
 
 
 func _physics_process(delta: float) -> void:
@@ -29,7 +29,7 @@ func move(delta: float) -> void:
 			$KinematicBody2D/AnimatedSprite.animation = "human_walking_north"
 		prev_pos.y = position.y
 		
-	set_offset(get_offset() + _speed * delta )
+	set_offset(get_offset() + speed * delta )
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "EnemySpawner",
+"language": "GDScript",
+"path": "res://src/base/Helpers.gd"
+}, {
+"base": "Node2D",
 "class": "Tower",
 "language": "GDScript",
 "path": "res://src/towers/Towers.gd"
 } ]
 _global_script_class_icons={
+"EnemySpawner": "",
 "Tower": ""
 }
 
