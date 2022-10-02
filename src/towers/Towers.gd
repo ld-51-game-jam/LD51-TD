@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 func turn() -> void:
 	get_node("Turret").look_at(enemy.position)
 
-func select_enemy():
+func select_enemy() -> void:
 	var enemy_progress_array = []
 	for i in enemy_array:
 		enemy_progress_array.append(i.offset)
@@ -30,7 +30,7 @@ func select_enemy():
 	var enemy_index = enemy_progress_array.find(max_offset)
 	enemy = enemy_array[enemy_index]
 	
-func fire():
+func fire() -> void:
 	ready = false
 	if enemy.health > 0:
 		enemy.on_hit(GameData.tower_data[type]["damage"])

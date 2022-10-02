@@ -10,9 +10,9 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
-"class": "EnemySpawner",
+"class": "LevelHandler",
 "language": "GDScript",
-"path": "res://src/base/Helpers.gd"
+"path": "res://src/base/LevelHandler.gd"
 }, {
 "base": "Node2D",
 "class": "Tower",
@@ -20,7 +20,7 @@ _global_script_classes=[ {
 "path": "res://src/towers/Towers.gd"
 } ]
 _global_script_class_icons={
-"EnemySpawner": "",
+"LevelHandler": "",
 "Tower": ""
 }
 

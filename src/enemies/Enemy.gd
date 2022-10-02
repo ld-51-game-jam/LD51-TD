@@ -1,21 +1,21 @@
 extends PathFollow2D
-const human_health: int = 4
-const zombie_health: int = 8
+
+const human_health: int = 3
+const zombie_health: int = 4
 var prev_pos: Vector2
 var timer_started: bool = false
 var health: int = human_health
-
 var e_state: String = "human"
 var _speed: float = 150
 var direction = "north"
+
 onready var health_bar = get_node("HealthBar")
 
 func _physics_process(delta: float) -> void:
-	move(delta)
+	if health > 0:
+		move(delta)
 
 func move(delta: float) -> void:
-	if health <= 0:
-		return
 	if prev_pos.x != position.x:
 		var diffx = position.x - prev_pos.x
 		if diffx < -1:
@@ -28,11 +28,11 @@ func move(delta: float) -> void:
 	if prev_pos.y != position.y:
 		var diffy = position.y - prev_pos.y
 		if diffy < -1:
-			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_south"
-			direction = "south"
-		if diffy > 1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_north"
 			direction = "north"
+		if diffy > 1:
+			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_south"
+			direction = "south"
 		prev_pos.y = position.y
 		
 	set_offset(get_offset() + _speed * delta )
@@ -53,17 +53,15 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			$KinematicBody2D/AnimatedSprite.animation = "dead"
 			yield(get_tree().create_timer(10), "timeout")
 			e_state = "zombie"
-			health = zombie_health
 			$KinematicBody2D/AnimatedSprite.animation = "revive"
 		"revive":
+			health = zombie_health
+			_speed = 150
 			health_bar.value = zombie_health
 			health_bar.max_value = zombie_health
 			$KinematicBody2D/AnimatedSprite.animation = "zombie_walking_" + direction
-			_speed = 50
 			
 
-# detect a bullet hitting enemy player
-# bullet_hit(node: Bullet) -> void:
 func on_hit(damage: int) -> void:
 	match e_state:
 		"zombie":
@@ -75,7 +73,6 @@ func on_hit(damage: int) -> void:
 func handle_zombie_hit(damage: int) -> void:
 	health = health - damage
 	health_bar.value = health
-	print(self.get_name() + " zombie " + String(health) + " hp")
 	if health <= 0:
 		_speed = 0
 		$KinematicBody2D/AnimatedSprite.animation = "dead"
@@ -87,8 +84,6 @@ func handle_zombie_hit(damage: int) -> void:
 func handle_human_hit(damage: int) -> void:
 	health = health - damage
 	health_bar.value = health
-	print(self.get_name() + " human " + String(health) + " hp")
 	if health <= 0:
 		_speed = 0
 		$KinematicBody2D/AnimatedSprite.animation = "death"
-		
