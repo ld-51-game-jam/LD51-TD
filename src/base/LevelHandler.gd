@@ -12,7 +12,9 @@ var current_wave: int = 0
 var enemies_in_wave: int = 0
 var wave_data: Array
 var start: bool = false
-
+var max_waves: int = 0
+var counters_visible: bool = false
+var spawn_fluctuator = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +23,7 @@ func _ready() -> void:
 		map_node = self
 	for i in get_tree().get_nodes_in_group("build_buttons"):
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
+	yield(get_tree().create_timer(5.0),"timeout")
 	start_next_wave()
 
 
@@ -35,6 +38,8 @@ func _process(_delta: float) -> void:
 			cont = true
 		else:
 			# load new level
+			# do we have some sort of transition scene? or leave as is for jam?
+			# get_tree().change_scene("res://src/levels/LevelTwo.tscn")
 			return
 			
 	if enemies_in_wave == 0 and start and cont:
@@ -73,14 +78,15 @@ func update_tower_preview() -> void:
 	var current_tile = map_node.get_node("TowerExclusion").world_to_map(mouse_position)
 	var tile_position = map_node.get_node("TowerExclusion").map_to_world(current_tile)
 	var gold = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Gold")
+	var sufficient_funds = int(gold.text) >= GameData.tower_data[build_type].cost
 	
-	if map_node.get_node("TowerExclusion").get_cellv(current_tile) == -1 and int(gold.text) > 1:
-		get_node("UI").update_tower_preview(tile_position, "ca3aa100")
+	if map_node.get_node("TowerExclusion").get_cellv(current_tile) == -1 and sufficient_funds:
+		get_node("UI").update_tower_preview(tile_position, "ca3aa100", sufficient_funds)
 		build_valid = true
 		build_location = tile_position
 		build_tile = current_tile
 	else:
-		get_node("UI").update_tower_preview(tile_position, "ccf02222")
+		get_node("UI").update_tower_preview(tile_position, "ccf02222", sufficient_funds)
 		build_valid = false
 
 	
@@ -98,24 +104,37 @@ func verify_and_build() -> void:
 		new_tower.type = build_type
 		new_tower.built = true
 		map_node.get_node("Turrets").add_child(new_tower, true)
+		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 4)
 		var gold: Label = get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold")
-		gold.text = String(int(gold.text) - 2)
+		gold.text = String(int(gold.text) - GameData.tower_data[build_type].cost)
 
 
 func start_next_wave() -> void:
 	current_wave += 1
 	yield(get_tree().create_timer(0.2),"timeout")
+	update_label(wave_data[1], "MaxCreeps")
+	update_label(0, "Creeps")
 	spawn_enemies()
-	var wave: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/Wave")
-	if wave != null:
-		wave.text = String(current_wave)
+	update_label(current_wave, "Wave")
+	wave_data[1] += current_wave * 2
 
 	
 func spawn_enemies() -> void:
-	for i in wave_data:
-		var new_enemy = load("res://src/enemies/" + i[0] + ".tscn").instance()
+	for i in range(wave_data[1]):
+		var new_enemy = load("res://src/enemies/" + wave_data[0] + ".tscn").instance()
 		map_node.get_node("Path").add_child(new_enemy, true)
 		enemies_in_wave = enemies_in_wave + 1
-		yield(get_tree().create_timer(i[1]),"timeout")
+		var fluctuation = spawn_fluctuator.randf_range(0.1, 1.0)
+		yield(get_tree().create_timer(fluctuation),"timeout")
+		update_label(i+1, "Creeps")
 	start = true
+	
+func change_labels() -> void:
+	update_label(max_waves, "MaxWave")
+	update_label(wave_data[1], "MaxCreeps")
+		
+func update_label(num: int, label_str: String) -> void:
+	var label: Label = get_tree().get_root().get_node_or_null("World/UI/HUD/InfoBar/" + label_str)
+	if label != null:
+		label.text = String(num)

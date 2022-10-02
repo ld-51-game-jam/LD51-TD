@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/props/treeGreen_large.png" type="Texture" id=1]
@@ -18,6 +19,7 @@
 [ext_resource path="res://assets/props/Tree2.png" type="Texture" id=16]
 [ext_resource path="res://assets/props/Tree1.png" type="Texture" id=17]
 [ext_resource path="res://assets/props/Hill1_with_graves.png" type="Texture" id=18]
+[ext_resource path="res://src/castle/Castle.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -481,13 +483,16 @@ tile_data = PoolIntArray( -65527, 5, 0, 9, 5, 0, 65537, 16, 0, 65538, 17, 0, 655
 [node name="Path" type="Path2D" parent="GameMap"]
 curve = SubResource( 3 )
 
+[node name="Castle" parent="GameMap" instance=ExtResource( 14 )]
+position = Vector2( 609, 87 )
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
 
 [node name="HUD" type="Control" parent="UI"]
-margin_left = 8.0
-margin_right = 1296.0
-margin_bottom = 728.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 1289.0
+margin_bottom = 727.0
 mouse_filter = 2
 
 [node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
@@ -516,8 +521,10 @@ texture = ExtResource( 9 )
 [node name="InfoBar" type="ColorRect" parent="UI/HUD"]
 self_modulate = Color( 0.0117647, 0, 0, 0.470588 )
 anchor_right = 1.0
-margin_left = -39.0
-margin_bottom = 60.0
+margin_left = -24.0
+margin_top = 2.0
+margin_right = 15.0
+margin_bottom = 62.0
 
 [node name="Currency" type="Label" parent="UI/HUD/InfoBar"]
 margin_right = 120.0
@@ -566,6 +573,29 @@ margin_bottom = 59.0
 text = "0"
 align = 1
 valign = 1
+
+[node name="CreepLabel" type="Label" parent="UI/HUD/InfoBar"]
+anchor_left = -0.006
+anchor_right = -0.006
+margin_left = 383.962
+margin_top = 24.0
+margin_right = 423.962
+margin_bottom = 38.0
+text = "Creeps:     /"
+
+[node name="Creeps" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 432.0
+margin_top = 24.0
+margin_right = 440.0
+margin_bottom = 38.0
+text = "0"
+
+[node name="MaxCreeps" type="Label" parent="UI/HUD/InfoBar"]
+margin_left = 456.0
+margin_top = 24.0
+margin_right = 472.0
+margin_bottom = 38.0
+text = "0"
 
 [node name="PanningCamera" type="Camera2D" parent="."]
 position = Vector2( 608, 328 )

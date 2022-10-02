@@ -3,7 +3,7 @@ extends PathFollow2D
 signal add_money
 
 const human_health: int = 3
-const zombie_health: int = 5
+const zombie_health: int = 4
 
 var prev_pos: Vector2
 var timer_started: bool = false
@@ -11,10 +11,14 @@ var health: int = human_health
 var e_state: String = "human"
 var _speed: float = 150
 var direction = "north"
+var in_castle: bool = false
 
 onready var health_bar = get_node("HealthBar")
 
 func _physics_process(delta: float) -> void:
+	if in_castle:
+		self.queue_free()
+		
 	if health > 0:
 		move(delta)
 
@@ -37,7 +41,7 @@ func move(delta: float) -> void:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_south"
 			direction = "south"
 		prev_pos.y = position.y
-		
+	
 	set_offset(get_offset() + _speed * delta )
 
 # Called when the node enters the scene tree for the first time.
@@ -105,3 +109,8 @@ func handle_human_hit(damage: int) -> void:
 func _on_Enemy_add_money():
 	var gold: Label = get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold")
 	gold.text = String(int(gold.text) + 1)
+
+
+func _on_CollisionShape2D_child_entered_tree(node):
+	print(node)
+	pass # Replace with function body.
