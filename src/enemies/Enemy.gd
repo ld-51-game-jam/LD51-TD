@@ -1,5 +1,7 @@
 extends PathFollow2D
 
+signal add_money
+
 const human_health: int = 3
 const zombie_health: int = 5
 var prev_pos: Vector2
@@ -82,6 +84,8 @@ func handle_zombie_hit(damage: int) -> void:
 	if health <= 0:
 		_speed = 0
 		$KinematicBody2D/AnimatedSprite.animation = "dead"
+		print('adding money')
+		emit_signal("add_money")
 		yield(get_tree().create_timer(3), "timeout")
 		self.queue_free()
 
@@ -93,3 +97,10 @@ func handle_human_hit(damage: int) -> void:
 	if health <= 0:
 		_speed = 0
 		$KinematicBody2D/AnimatedSprite.animation = "death"
+		print('adding money', get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold").text)
+		emit_signal("add_money")
+
+
+func _on_Enemy_add_money():
+	var gold: Label = get_tree().get_root().get_node("World/UI/HUD/InfoBar/Gold")
+	gold.text = String(int(gold.text) + 1)
