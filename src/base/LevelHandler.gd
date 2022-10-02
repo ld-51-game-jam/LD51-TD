@@ -102,7 +102,6 @@ func verify_and_build() -> void:
 		new_tower.type = build_type
 		new_tower.built = true
 		map_node.get_node("Turrets").add_child(new_tower, true)
-		map_node.get_node("Turrets").add_child(new_tower, true)
 		map_node.get_node("TowerExclusion").set_cellv(build_tile, 4)
 		GameData.gold -= GameData.tower_data[build_type].cost
 		update_label(GameData.gold, "Gold")
@@ -124,7 +123,7 @@ func spawn_enemies() -> void:
 		var new_enemy = load("res://src/enemies/" + wave_data[0] + ".tscn").instance()
 		map_node.get_node("Path").add_child(new_enemy, true)
 		enemies_in_wave = enemies_in_wave + 1
-		var fluctuation = spawn_fluctuator.randf_range(0.1, 1.0)
+		var fluctuation = spawn_fluctuator.randf_range(0.2, 1.0)
 		yield(get_tree().create_timer(fluctuation),"timeout")
 		update_label(i+1, "Creeps")
 	start = true
