@@ -1,7 +1,7 @@
 extends PathFollow2D
 
 const human_health: int = 3
-const zombie_health: int = 4
+const zombie_health: int = 5
 var prev_pos: Vector2
 var timer_started: bool = false
 var health: int = human_health
@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 
 func move(delta: float) -> void:
 	if prev_pos.x != position.x:
-		var diffx = position.x - prev_pos.x
+		var diffx: float = position.x - prev_pos.x
 		if diffx < -1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_west"
 			direction = "west"
@@ -26,7 +26,7 @@ func move(delta: float) -> void:
 			direction = "east"
 		prev_pos.x = position.x
 	if prev_pos.y != position.y:
-		var diffy = position.y - prev_pos.y
+		var diffy: float = position.y - prev_pos.y
 		if diffy < -1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_north"
 			direction = "north"
@@ -39,6 +39,7 @@ func move(delta: float) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimatedTimer.visible = false
 	health_bar.value = health
 	health_bar.max_value = health
 	$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
@@ -51,9 +52,14 @@ func _on_AnimatedSprite_animation_finished() -> void:
 	match $KinematicBody2D/AnimatedSprite.animation:
 		"death":
 			$KinematicBody2D/AnimatedSprite.animation = "dead"
+			$AnimatedTimer.visible = true
+			$AnimatedTimer.frame = 0
+			$AnimatedTimer.playing = true
 			yield(get_tree().create_timer(10), "timeout")
 			e_state = "zombie"
 			$KinematicBody2D/AnimatedSprite.animation = "revive"
+			$AnimatedTimer.playing = false
+			$AnimatedTimer.visible = false
 		"revive":
 			health = zombie_health
 			_speed = 150
