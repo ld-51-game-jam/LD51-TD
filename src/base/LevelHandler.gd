@@ -15,6 +15,7 @@ var start: bool = false
 var max_waves: int = 0
 var counters_visible: bool = false
 var spawn_fluctuator = RandomNumberGenerator.new()
+var is_round_two: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,7 +41,9 @@ func _process(_delta: float) -> void:
 		else:
 			# load new level
 			# do we have some sort of transition scene? or leave as is for jam?
-			# get_tree().change_scene("res://src/levels/LevelTwo.tscn")
+			if is_round_two == false:
+				is_round_two = true
+				get_tree().change_scene("res://src/levels/LevelTwo.tscn")
 			return
 			
 	if enemies_in_wave == 0 and start and cont:

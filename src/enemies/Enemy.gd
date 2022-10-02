@@ -61,7 +61,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			$KinematicBody2D/AnimatedSprite.animation = "dead"
 			$AnimatedTimer.visible = true
 			$AnimatedTimer.frame = 0
-			$AnimatedTimer.playing = true
+			$AnimatedTimer.play()
 			yield(get_tree().create_timer(10), "timeout")
 			e_state = "zombie"
 			$KinematicBody2D/AnimatedSprite.animation = "revive"
