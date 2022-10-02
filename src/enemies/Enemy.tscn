@@ -325,7 +325,7 @@ _demo_mode = true
 position = Vector2( 40, 39 )
 frames = SubResource( 9 )
 animation = "death"
-frame = 1
+frame = 8
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/start_menu/StartScene.gd" type="Script" id=1]
 [ext_resource path="res://assets/props/treeGreen_large.png" type="Texture" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://assets/base/terrainTiles_default.png" type="Texture" id=6]
 [ext_resource path="res://assets/props/crateWood.png" type="Texture" id=7]
 [ext_resource path="res://assets/props/crateMetal.png" type="Texture" id=8]
-[ext_resource path="res://src/start_menu/PathFollow2D.gd" type="Script" id=9]
+[ext_resource path="res://src/enemies/Enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/start_menu/PathFollow2D.gd" type="Script" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -165,6 +166,7 @@ _data = {
 
 [node name="StartScene" type="Node2D"]
 script = ExtResource( 1 )
+EnemyScene = ExtResource( 9 )
 
 [node name="GroundLayer" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -230,7 +232,7 @@ curve = SubResource( 5 )
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( 1376, 96 )
 rotation = 3.12894
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/OptionsButton" to="Menu" method="_on_OptionsButton_pressed"]

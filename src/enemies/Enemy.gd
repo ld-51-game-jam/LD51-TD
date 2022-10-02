@@ -30,6 +30,10 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			$AnimatedSprite.animation = "dead"
 
 
+func set_flip_v(val: bool) -> void:
+	$AnimatedSprite.set_flip_v(val)
+
+
 # detect a bullet hitting enemy player
 # bullet_hit(node: Bullet) -> void:
 func bullet_hit(node) -> void:
