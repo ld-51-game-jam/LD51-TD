@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/props/treeGreen_large.png" type="Texture" id=1]
 [ext_resource path="res://assets/props/treeBrown_large.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/levels/UI.gd" type="Script" id=11]
 [ext_resource path="res://assets/base/empty.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/fonts/Montreal-Bold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://src/castle/Castle.tscn" type="PackedScene" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -228,13 +229,17 @@ scale = Vector2( 0.752778, 0.752778 )
 energy = 0.7
 mode = 1
 
+[node name="Castle" parent="GameMap" instance=ExtResource( 14 )]
+position = Vector2( 609, 87 )
+
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
 
 [node name="HUD" type="Control" parent="UI"]
-margin_left = 8.0
-margin_right = 1296.0
-margin_bottom = 728.0
+margin_left = 1.0
+margin_top = -1.0
+margin_right = 1289.0
+margin_bottom = 727.0
 mouse_filter = 2
 
 [node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
@@ -263,8 +268,10 @@ texture = ExtResource( 9 )
 [node name="InfoBar" type="ColorRect" parent="UI/HUD"]
 self_modulate = Color( 0.0117647, 0, 0, 0.470588 )
 anchor_right = 1.0
-margin_left = -39.0
-margin_bottom = 60.0
+margin_left = -24.0
+margin_top = 2.0
+margin_right = 15.0
+margin_bottom = 62.0
 
 [node name="Currency" type="Label" parent="UI/HUD/InfoBar"]
 margin_right = 120.0
