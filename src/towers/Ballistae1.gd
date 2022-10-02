@@ -9,9 +9,9 @@ export var arrow_speed = 150
 
 func fire() -> void:
 	var a = arrow
-	a.position = get_global_position()
-	a.rotation = get_angle_to(get_global_mouse_position())
-	a.apply_impulse(Vector2(), Vector2(arrow_speed, 0).rotated(a.rotation))
+	a.position = self.position
+#	a.rotation = get_angle_to(get_global_mouse_position())
+	a.apply_impulse(Vector2(), Vector2(arrow_speed, 0))
 	get_tree().get_root().call_deferred("add_child", a)
 	
 	ready = false
