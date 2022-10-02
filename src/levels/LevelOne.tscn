@@ -1,16 +1,30 @@
+<<<<<<< HEAD
 [gd_scene load_steps=15 format=2]
+=======
+[gd_scene load_steps=19 format=2]
+>>>>>>> da447cdaff5021326a7ecd6bf1539f1a14afaa5f
 
 [ext_resource path="res://assets/props/treeGreen_large.png" type="Texture" id=1]
 [ext_resource path="res://assets/props/treeBrown_large.png" type="Texture" id=2]
 [ext_resource path="res://assets/base/terrainTiles_default.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/themes/montreal.tres" type="Theme" id=4]
+<<<<<<< HEAD
 [ext_resource path="res://assets/base/terrainTiles_Custom.png" type="Texture" id=5]
 [ext_resource path="res://src/camera/panningcamera.gd" type="Script" id=6]
+=======
+[ext_resource path="res://assets/base/1920_1080_level_shadow.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/coin.png" type="Texture" id=7]
+>>>>>>> da447cdaff5021326a7ecd6bf1539f1a14afaa5f
 [ext_resource path="res://assets/ui/button.png" type="Texture" id=8]
 [ext_resource path="res://assets/towers/weapons/Ballistae_idle.png" type="Texture" id=9]
 [ext_resource path="res://src/levels/LevelOne.gd" type="Script" id=10]
 [ext_resource path="res://src/levels/UI.gd" type="Script" id=11]
 [ext_resource path="res://assets/base/empty.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/fonts/Montreal-Bold.ttf" type="DynamicFontData" id=13]
+
+[sub_resource type="StreamTexture" id=6]
+flags = 4
+load_path = "res://.import/x.png-2dcefbbfc3e46b10fc35c8c2c8c64dba.stex"
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -36,6 +50,29 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+1/name = "terrainTiles_Custom.png 1"
+1/texture = SubResource( 6 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 128, 0, 384, 128 )
+1/tile_mode = 1
+1/autotile/bitmask_mode = 2
+1/autotile/bitmask_flags = [ Vector2( 0, 1 ), 146, Vector2( 1, 0 ), 56, Vector2( 1, 1 ), 186, Vector2( 2, 0 ), 178, Vector2( 2, 1 ), 176, Vector2( 3, 0 ), 154, Vector2( 3, 1 ), 152, Vector2( 4, 0 ), 58, Vector2( 4, 1 ), 50, Vector2( 5, 0 ), 184, Vector2( 5, 1 ), 26 ]
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 64, 64 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
 [sub_resource type="TileSet" id=2]
 0/name = "terrainTiles_default.png 0"
@@ -127,12 +164,20 @@
 4/shapes = [  ]
 4/z_index = 0
 5/name = "terrainTiles_Custom.png 5"
+<<<<<<< HEAD
 5/texture = ExtResource( 5 )
+=======
+5/texture = SubResource( 6 )
+>>>>>>> da447cdaff5021326a7ecd6bf1539f1a14afaa5f
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 128, 0, 384, 128 )
 5/tile_mode = 1
+<<<<<<< HEAD
 5/autotile/bitmask_mode = 1
+=======
+5/autotile/bitmask_mode = 2
+>>>>>>> da447cdaff5021326a7ecd6bf1539f1a14afaa5f
 5/autotile/bitmask_flags = [ Vector2( 0, 1 ), 146, Vector2( 1, 0 ), 56, Vector2( 1, 1 ), 186, Vector2( 2, 0 ), 178, Vector2( 2, 1 ), 176, Vector2( 3, 0 ), 154, Vector2( 3, 1 ), 152, Vector2( 4, 0 ), 58, Vector2( 4, 1 ), 50, Vector2( 5, 0 ), 184, Vector2( 5, 1 ), 26 ]
 5/autotile/icon_coordinate = Vector2( 0, 0 )
 5/autotile/tile_size = Vector2( 64, 64 )
@@ -154,6 +199,13 @@
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 736, 752, 0, 0, 0, 0, 736, 720, 0.235702, 24.8666, -0.235702, -24.8666, 736, 696, 0, 0, 0, 0, 704, 672, -17.5937, 0.132283, 17.5937, -0.132283, 576, 672, 0.353553, 36.6517, -0.353553, -36.6517, 544, 640, 0.589256, 23.0988, -0.589256, -23.0988, 544, 264, -24.9844, -2.59272, 24.9844, 2.59272, 576, 224, 0.117851, 13.435, -0.117851, -13.435, 608, 192, 0, 0, 0, 0, 608, -24 )
 }
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 13 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 10 )
@@ -178,6 +230,13 @@ tile_data = PoolIntArray( -65527, 1, 0, 9, 1, 0, 65538, 2, 0, 65545, 1, 0, 65549
 
 [node name="Path" type="Path2D" parent="GameMap"]
 curve = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="GameMap"]
+position = Vector2( 645, 368.5 )
+scale = Vector2( 0.752778, 0.752778 )
+texture = ExtResource( 6 )
+energy = 0.7
+mode = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 11 )
@@ -222,14 +281,19 @@ margin_right = 120.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 120, 60 )
 theme = ExtResource( 4 )
-text = "$"
 align = 2
 valign = 1
+
+[node name="Sprite" type="Sprite" parent="UI/HUD/InfoBar/Currency"]
+position = Vector2( 154.188, 27.1875 )
+scale = Vector2( 0.800781, 0.800781 )
+texture = ExtResource( 7 )
 
 [node name="Gold" type="Label" parent="UI/HUD/InfoBar"]
 margin_left = 176.0
 margin_right = 250.0
 margin_bottom = 59.0
+theme = SubResource( 5 )
 text = "5"
 valign = 1
 
