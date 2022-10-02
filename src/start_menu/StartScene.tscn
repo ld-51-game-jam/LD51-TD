@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/start_menu/StartScene.gd" type="Script" id=1]
 [ext_resource path="res://assets/props/treeGreen_large.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/base/terrainTiles_default.png" type="Texture" id=6]
 [ext_resource path="res://assets/props/crateWood.png" type="Texture" id=7]
 [ext_resource path="res://assets/props/crateMetal.png" type="Texture" id=8]
-[ext_resource path="res://assets/base/1920_1080_level_shadow.png" type="Texture" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "terrainTiles_default.png 0"
@@ -183,7 +182,6 @@ tile_data = PoolIntArray( 14, 3, 0, 16, 5, 0, 65537, 2, 0, 65538, 2, 0, 65545, 2
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 645, 368.5 )
 scale = Vector2( 0.752778, 0.752778 )
-texture = ExtResource( 9 )
 energy = 0.7
 mode = 1
 
