@@ -1,37 +1,37 @@
 extends PathFollow2D
 
-var posx
-var posy
-
+var prev_pos: Vector2
 var timer_started: bool = false
 var human_health: int = 2
 var zombie_health: int = 4
 var e_state: String = "human"
-
 var _speed: float = 150
+var direction = "north"
 
-# toggle on or off from inspector
-export var _demo_mode: bool = false
-#for demo purposes only.
-var demo_walk_count: int = 0
+
 func _physics_process(delta: float) -> void:
 	move(delta)
 
+
 func move(delta: float) -> void:
-	if posx != position.x:
-		var diffx = position.x - posx
+	if prev_pos.x != position.x:
+		var diffx = position.x - prev_pos.x
 		if diffx < -1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_west"
+			direction = "west"
 		if diffx > 1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_east"
-		posx = position.x
-	if posy != position.y:
-		var diffy = position.y - posy
+			direction = "east"
+		prev_pos.x = position.x
+	if prev_pos.y != position.y:
+		var diffy = position.y - prev_pos.y
 		if diffy < -1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_south"
+			direction = "south"
 		if diffy > 1:
 			$KinematicBody2D/AnimatedSprite.animation = e_state + "_walking_north"
-		posy = position.y
+			direction = "north"
+		prev_pos.y = position.y
 		
 	set_offset(get_offset() + _speed * delta )
 
@@ -39,8 +39,8 @@ func move(delta: float) -> void:
 func _ready() -> void:
 	$KinematicBody2D/AnimatedSprite.animation = "human_walking_south"
 	$KinematicBody2D/AnimatedSprite.playing = true
-	posx = position.x
-	posy = position.y
+	prev_pos.x = position.x
+	prev_pos.y = position.y
 	
 # handle animations finishing
 func _on_AnimatedSprite_animation_finished() -> void:
@@ -48,7 +48,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 		"death":
 			$KinematicBody2D/AnimatedSprite.animation = "dead"
 		"revive":
-			$KinematicBody2D/AnimatedSprite.animation = "zombie_walking_south"
+			$KinematicBody2D/AnimatedSprite.animation = "zombie_walking_" + direction
 			
 
 # detect a bullet hitting enemy player

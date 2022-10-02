@@ -10,10 +10,6 @@ var build_type
 var current_wave = 0
 var enemies_in_wave = 0
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,15 +18,15 @@ func _ready() -> void:
 		i.connect("pressed", self, "initiate_build_mode", [i.get_name()])
 	start_next_wave()
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if build_mode:
 		update_tower_preview()
 
 
-func _unhandled_input(event) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel") and build_mode == true:
 		cancel_build_mode()
-	if  event.is_action_released("ui_accept") and build_mode == true:
+	if event.is_action_released("ui_accept") and build_mode == true:
 		verify_and_build()
 		cancel_build_mode()
 
