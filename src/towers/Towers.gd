@@ -20,21 +20,34 @@ func _physics_process(_delta: float) -> void:
 	
 
 func turn() -> void:
-	get_node("Turret").look_at(enemy.position)
+	if is_instance_valid(enemy):
+		get_node("Turret").look_at(enemy.position)
+	else:
+		enemy_array.erase(enemy)
+		enemy = null
 
 func select_enemy() -> void:
 	var enemy_progress_array = []
 	for i in enemy_array:
-		enemy_progress_array.append(i.offset)
-	var max_offset = enemy_progress_array.max()
-	var enemy_index = enemy_progress_array.find(max_offset)
-	enemy = enemy_array[enemy_index]
+		if is_instance_valid(i):
+			enemy_progress_array.append(i.offset)
+			var max_offset = enemy_progress_array.max()
+			var enemy_index = enemy_progress_array.find(max_offset)
+			enemy = enemy_array[enemy_index]
+		else:
+			enemy_array.erase(i)
+			enemy = null
+		
 	
 func fire() -> void:
 	ready = false
-	if enemy.health > 0:
-		enemy.on_hit(GameData.tower_data[type]["damage"])
-		yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
+	if is_instance_valid(enemy):
+		if enemy.health > 0:
+			enemy.on_hit(GameData.tower_data[type]["damage"])
+			yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
+	else:
+		enemy_array.erase(enemy)
+		enemy = null
 	ready = true
 	
 	

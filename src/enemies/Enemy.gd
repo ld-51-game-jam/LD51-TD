@@ -106,6 +106,11 @@ func handle_human_hit(damage: int) -> void:
 		emit_signal("add_money")
 
 
-func _on_Enemy_add_money() -> void:
+func _on_Enemy_add_money():
 	GameData.gold += 1
-	get_tree().get_root().get_node('World').update_label(GameData.gold, "Gold")
+	get_tree().get_root().get_node("World").update_label(GameData.gold, "Gold")
+
+
+func _on_CollisionShape2D_child_entered_tree(node):
+	print(node)
+	pass # Replace with function body.
