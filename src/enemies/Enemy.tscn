@@ -612,6 +612,7 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 frames = SubResource( 9 )
 animation = "zombie_walking_west"
+frame = 3
 playing = true
 
 [node name="Position2D" type="Position2D" parent="KinematicBody2D/AnimatedSprite"]
@@ -636,7 +637,7 @@ position = Vector2( 24, -16 )
 scale = Vector2( 0.749999, 1 )
 frames = SubResource( 106 )
 animation = "count_down"
-frame = 9
+frame = 7
 playing = true
 
 [connection signal="add_money" from="." to="." method="_on_Enemy_add_money"]
