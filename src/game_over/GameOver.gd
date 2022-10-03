@@ -8,6 +8,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimationPlayer.play("drop")
 	pass # Replace with function body.
 
 func _on_QuitButton_pressed() -> void:

@@ -1,21 +1,57 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui/themes/montreal.tres" type="Theme" id=1]
 [ext_resource path="res://src/start_menu/Menu.gd" type="Script" id=2]
 [ext_resource path="res://src/game_over/GameOver.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/game_over_static.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverStatic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 640, -120 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "drop"
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverStatic:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 640, -120 ), Vector2( 640, 320 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="GameOverStatic" type="Sprite" parent="."]
+position = Vector2( 640, -120 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 4 )
 
 [node name="Menu" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 528.0
-margin_top = 288.0
-margin_right = 568.0
-margin_bottom = 328.0
+margin_left = 552.0
+margin_top = 472.0
+margin_right = 592.0
+margin_bottom = 512.0
 script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
@@ -40,6 +76,10 @@ margin_top = 24.0
 margin_right = 82.0
 margin_bottom = 44.0
 text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/drop = SubResource( 2 )
 
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
