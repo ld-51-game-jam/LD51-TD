@@ -41,5 +41,6 @@ margin_right = 82.0
 margin_bottom = 44.0
 text = "Quit"
 
+[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
