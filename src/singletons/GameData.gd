@@ -18,3 +18,4 @@ var tower_data = {
 
 var hp: int = 5
 var gold: int = 5
+var current_level: int = 1

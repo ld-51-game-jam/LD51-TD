@@ -1,6 +1,10 @@
 extends CanvasLayer
 
 
+func _ready() -> void:
+	$HUD/BuildBar/Ballistae/BallistaeCost.text = String(GameData.tower_data.Ballistae1.cost)
+	$HUD/BuildBar/Catapult/CatapultCost.text = String(GameData.tower_data.Catapult1.cost)
+
 func set_tower_preview(tower_type: String, mouse_position: Vector2) -> void:
 	var drag_tower = load("res://src/towers/" + tower_type + ".tscn").instance()
 	drag_tower.set_name("DragTower")
