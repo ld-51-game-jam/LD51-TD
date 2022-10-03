@@ -1,10 +1,12 @@
 extends Node2D
 class_name Tower
+
 var type
 var enemy_array = []
 var built = false
 var enemy
 var ready = true
+
 func _ready():
 	if built:
 		$Range/CollisionShape2D.get_shape().radius = 0.5 * GameData.tower_data[type].range
