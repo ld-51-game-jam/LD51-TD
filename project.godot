@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://src/towers/Bullet.gd"
+}, {
+"base": "Node2D",
 "class": "LevelHandler",
 "language": "GDScript",
 "path": "res://src/base/LevelHandler.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://src/towers/Towers.gd"
 } ]
 _global_script_class_icons={
+"Bullet": "",
 "LevelHandler": "",
 "PanningCamera": "",
 "Tower": ""

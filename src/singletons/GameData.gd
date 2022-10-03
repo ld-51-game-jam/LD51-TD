@@ -6,13 +6,15 @@ var tower_data = {
 		"damage": 1,
 		"rof": 1,
 		"range": 500,
-		"cost": 2
+		"cost": 2,
+		"ammo": "Arrow"
 		},
 	"Catapult1": {
 		"damage": 2,
 		"rof": 2,
 		"range": 800,
-		"cost": 5
+		"cost": 5,
+		"ammo": "Fireball"
 	}
 }
 
