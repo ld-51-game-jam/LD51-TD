@@ -656,7 +656,7 @@ position = Vector2( 24, -16 )
 scale = Vector2( 0.749999, 1 )
 frames = SubResource( 106 )
 animation = "count_down"
-frame = 3
+frame = 4
 playing = true
 
 [connection signal="add_money" from="." to="." method="_on_Enemy_add_money"]
