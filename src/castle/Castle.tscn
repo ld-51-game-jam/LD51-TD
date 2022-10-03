@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/castle/Castle.gd" type="Script" id=1]
 [ext_resource path="res://assets/walls/castle_wall3.png" type="Texture" id=2]
@@ -19,6 +19,37 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 82.5, 41.5 )
 
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "castle_shake"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -1 ), Vector2( -10, -1 ), Vector2( 10, -1 ), Vector2( 0, -1 ) ]
+}
+
 [node name="Castle" type="Area2D"]
 position = Vector2( 149, 64 )
 script = ExtResource( 1 )
@@ -30,6 +61,10 @@ frames = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 4.5, -19.5 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/castle_shake = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Castle_body_entered"]
 [connection signal="child_entered_tree" from="CollisionShape2D" to="." method="_on_CollisionShape2D_child_entered_tree"]
