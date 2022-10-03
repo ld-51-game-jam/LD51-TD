@@ -12,8 +12,12 @@ var t = 0.0
 func _physics_process(delta: float) -> void:
 	
 	if is_instance_valid(enemy):
-		t += delta + 0.02
-		$AnimatedSprite.position = self.position.linear_interpolate(enemy.position, t)
+		self.look_at(enemy.position)
+		t += delta * 0.1
+		self.position = self.position.linear_interpolate(enemy.position, t )
+	else:
+		self.queue_free()
+		
 # Called when the node enters the scene tree for the first time.
 
 
