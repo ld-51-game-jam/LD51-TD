@@ -520,7 +520,6 @@ margin_right = 154.0
 margin_bottom = 44.0
 text = "Quit"
 
-
 [node name="Titlecard" type="Sprite" parent="."]
 position = Vector2( 640, 272 )
 scale = Vector2( 1.275, 1.275 )
@@ -529,7 +528,6 @@ texture = ExtResource( 15 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 6 )
 anims/Titlecard = SubResource( 7 )
-
 
 [connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

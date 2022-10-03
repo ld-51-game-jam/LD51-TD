@@ -57,7 +57,7 @@ func _ready() -> void:
 # handle animations finishing
 func _on_AnimatedSprite_animation_finished() -> void:
 	match $KinematicBody2D/AnimatedSprite.animation:
-		"death":
+		"human_death":
 			$KinematicBody2D/AnimatedSprite.animation = "dead"
 			$AnimatedTimer.visible = true
 			$AnimatedTimer.frame = 0
@@ -67,6 +67,14 @@ func _on_AnimatedSprite_animation_finished() -> void:
 			$KinematicBody2D/AnimatedSprite.animation = "revive"
 			$AnimatedTimer.playing = false
 			$AnimatedTimer.visible = false
+		"zombie_death":
+			$KinematicBody2D/AnimatedSprite.animation = "dead"
+			emit_signal("add_money")
+			yield(get_tree().create_timer(3), "timeout")
+			var world: Node = get_tree().get_root().get_node("World")
+			world.enemies_in_wave = world.enemies_in_wave - 1
+			self.queue_free()
+			
 		"revive":
 			health = zombie_health
 			_speed = 150
@@ -88,12 +96,8 @@ func handle_zombie_hit(damage: int) -> void:
 	health_bar.value = health
 	if health <= 0:
 		_speed = 0
-		$KinematicBody2D/AnimatedSprite.animation = "dead"
-		emit_signal("add_money")
-		yield(get_tree().create_timer(3), "timeout")
-		var world: Node = get_tree().get_root().get_node("World")
-		world.enemies_in_wave = world.enemies_in_wave - 1
-		self.queue_free()
+		$KinematicBody2D/AnimatedSprite.animation = "zombie_death"
+
 
 
 # handle human being hit
@@ -102,7 +106,7 @@ func handle_human_hit(damage: int) -> void:
 	health_bar.value = health
 	if health <= 0:
 		_speed = 0
-		$KinematicBody2D/AnimatedSprite.animation = "death"
+		$KinematicBody2D/AnimatedSprite.animation = "human_death"
 		emit_signal("add_money")
 
 
