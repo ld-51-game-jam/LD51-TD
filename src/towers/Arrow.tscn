@@ -12,10 +12,10 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 31.9999
-height = 64.0
+radius = 7.99997
+height = 32.0001
 
-[node name="Node2D" type="Node2D"]
+[node name="Arrow" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -26,3 +26,5 @@ frames = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea"]
 rotation = 1.5708
 shape = SubResource( 2 )
+
+[connection signal="body_entered" from="BulletArea" to="." method="_on_BulletArea_body_entered"]

@@ -15,6 +15,13 @@ var tower_data = {
 		"range": 800,
 		"cost": 5,
 		"ammo": "Fireball"
+	},
+		"IceTower1": {
+		"damage": 1,
+		"rof": 2.5,
+		"range": 400,
+		"cost": 3,
+		"ammo": "IceShard"
 	}
 }
 
