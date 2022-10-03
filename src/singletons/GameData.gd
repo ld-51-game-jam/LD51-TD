@@ -6,7 +6,7 @@ var tower_data = {
 		"damage": 1,
 		"rof": 1,
 		"range": 500,
-		"cost": 2
+		"cost": 2,
 		"ammo": "Arrow"
 		},
 	"Catapult1": {
