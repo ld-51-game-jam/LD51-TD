@@ -519,6 +519,20 @@ margin_right = 74.0
 margin_bottom = 74.0
 texture = ExtResource( 9 )
 
+[node name="BallistaeCost" type="Label" parent="UI/HUD/BuildBar/Ballistae"]
+margin_left = 16.0
+margin_top = 21.0
+margin_right = 29.0
+margin_bottom = 35.0
+rect_rotation = 90.0
+text = "1"
+
+[node name="GoldSprite" type="Sprite" parent="UI/HUD/BuildBar/Ballistae"]
+position = Vector2( 10.1208, 10.9594 )
+rotation = 1.5708
+scale = Vector2( 0.629433, 0.543758 )
+texture = ExtResource( 7 )
+
 [node name="Catapult" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
 margin_top = 84.0
 margin_right = 80.0
@@ -539,6 +553,20 @@ margin_top = 105.36
 margin_right = 178.32
 margin_bottom = 105.36
 texture = ExtResource( 19 )
+
+[node name="GoldSprite" type="Sprite" parent="UI/HUD/BuildBar/Catapult"]
+position = Vector2( 10.368, 10.7836 )
+rotation = 1.5708
+scale = Vector2( 0.600875, 0.562797 )
+texture = ExtResource( 7 )
+
+[node name="CatapultCost" type="Label" parent="UI/HUD/BuildBar/Catapult"]
+margin_left = 16.0
+margin_top = 21.0
+margin_right = 56.0
+margin_bottom = 35.0
+rect_rotation = 90.0
+text = "1"
 
 [node name="InfoBar" type="ColorRect" parent="UI/HUD"]
 self_modulate = Color( 0.0117647, 0, 0, 0.470588 )
