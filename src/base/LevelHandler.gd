@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 				2:
 					# Show nice Win screen
 					GameData.current_level = 1
-					get_tree().change_scene("res://src/game_over/GameOver.tscn")
+					get_tree().change_scene("res://src/game_over/YouWin.tscn")
 			return
 			
 	if enemies_in_wave == 0 and start and cont:
