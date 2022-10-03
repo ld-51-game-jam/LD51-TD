@@ -1,5 +1,7 @@
 extends Area2D
 
+func _ready() -> void:
+	$AnimatedSprite.frame = 5 - GameData.hp
 
 func _on_Castle_body_entered(enemy: KinematicBody2D) -> void:
 	$AnimatedSprite.frame = $AnimatedSprite.frame + 1
