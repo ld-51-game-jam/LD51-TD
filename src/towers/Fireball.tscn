@@ -40,10 +40,9 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 
-[node name="ImpactDetector" type="Area2D" parent="."]
-collision_mask = 6
+[node name="BulletArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea"]
 shape = SubResource( 6 )
 
-[connection signal="area_entered" from="ImpactDetector" to="." method="_on_ImpactDetector_area_entered"]
+[connection signal="body_entered" from="BulletArea" to="." method="_on_BulletArea_body_entered"]
